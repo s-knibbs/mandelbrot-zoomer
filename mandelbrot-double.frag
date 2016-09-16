@@ -53,13 +53,13 @@ vec4 hsvToRgb(float H, float V)
 void main()
 {
 	dvec2 range = (topright - bottomleft);
-	float x = 0.0;
-	float y = 0.0;
+	double x = 0.0;
+	double y = 0.0;
 	float shade;
-	vec2 p0 = vec2(gl_FragCoord.x - 0.5 , gl_FragCoord.y - 0.5);
+	dvec2 p0 = dvec2(gl_FragCoord.x - 0.5 , gl_FragCoord.y - 0.5);
 	p0 = p0 / resolution;
-	float temp;
-	p0 = vec2(fma(p0, range, bottomleft));
+	double temp;
+	p0 = dvec2(fma(p0, range, bottomleft));
 
 	int i;
 	for (i = 0; i < ITERATIONS; i++)

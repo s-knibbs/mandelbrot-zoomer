@@ -1,0 +1,8 @@
+# Visual Studio generated files
+.vs
+Debug
+x64
+*.db
+*.user
+*.filters
+*.opendb
