@@ -1,4 +1,5 @@
 # Mandelbrot Zoomer
+<img alt="Example Screenshot" src="https://raw.githubusercontent.com/s-knibbs/mandelbrot-zoomer/master/mandelbrot-screen.png" width="600" />
 
 A [mandelbrot](http://en.wikipedia.org/wiki/Mandelbrot_set) zoomer using GLSL (OpenGL shader language).
 
