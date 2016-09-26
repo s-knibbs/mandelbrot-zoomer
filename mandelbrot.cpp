@@ -14,6 +14,7 @@
 #include <exception>
 #include <GL/glew.h>
 #include <string>
+#include "options.h"
 
 #define PROGRAM_LOG_NAME "ProgramLog.txt"
 #define SHADER_LOG_NAME "ShaderLog.txt"
@@ -477,42 +478,6 @@ class Program
     }
 };
 
-OptMap get_options(int argc, char* argv[], const char* opt_spec)
-{
-  char opt_char;
-  bool has_arg = false;
-  OptMap options;
-  for (int i = 0; i < argc; i++)
-  {
-    if (argv[i][0] == '-' && strlen(argv[i]) == 2 && !isdigit(argv[i][1]))
-    {
-      if (has_arg) throw InitException(string("Missing argument for option -") + opt_char);
-      opt_char = argv[i][1];
-      int j = 0;
-      while (opt_spec[j] != opt_char && opt_spec[j] != 0)
-      {
-        j++;
-      }
-      if (opt_spec[j] == opt_char)
-      {
-        has_arg = (opt_spec[j + 1] == ':');
-        if (!has_arg) options[opt_char] = "1";
-      }
-      else
-      {
-        throw InitException(string("Invalid option: -") + opt_char);
-      }
-    }
-    else if (has_arg)
-    {
-      options[opt_char] = argv[i];
-      has_arg = false;
-    }
-  }
-  if (has_arg) throw InitException(string("Missing argument for option -") + opt_char);
-  return options;
-}
-
 int main(int argc, char* argv[])
 {
   int returncode = 0;
@@ -592,6 +557,11 @@ int main(int argc, char* argv[])
     double min_width = (options.count('d') > 0) ? 20 * DBL_EPSILON : 20 * FLT_EPSILON;
     Program prog(shader_file, w, h, (options.count('f') > 0));
     prog.eventLoop((options.count('r') > 0), axis, speed, min_width);
+  }
+  catch (invalid_argument& e)
+  {
+    cerr << e.what() << endl;
+    returncode = 1;
   }
   catch (InitException& e)
   {

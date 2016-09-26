@@ -48,6 +48,4 @@ Build by running `build.sh`.
 
 Visual Studio 2015 edition is required to build with the included solution file.
 
-[SDL](https://www.libsdl.org/download-1.2.php) and [Glew](http://glew.sourceforge.net/index.html) should be installed to `C:\SDL\SDL-1.2.15` and `C:\glew\glew-2.0.0` respectively for the configured paths to work correctly.
-
-**Note:** The pre-built SDL binaries on their site were built using a previous version of Visual Studio and are not compatible with Visual Studio 2015, so you will need to build this from source.
+The dependencies should be resolved automatically.
